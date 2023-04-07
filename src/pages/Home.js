@@ -1,17 +1,12 @@
-import { useContext } from "react";
-import ProductContext from "../store/product-context"
+import { Box } from "@chakra-ui/react";
+import ProductsContainer from "../components/ProductsContainer";
 
 const Home = () => {
-
-    const productsCtx = useContext(ProductContext);
-    const products = productsCtx?.products
-    const isLoading = productsCtx?.isLoading;
-
-    return(
-        <div>
-            
-        </div>
-    )
-}
+  return (
+    <Box>
+      <ProductsContainer />
+    </Box>
+  );
+};
 
 export default Home;
