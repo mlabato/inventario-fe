@@ -1,58 +1,69 @@
 import { useContext } from "react";
-import ProductContext from "../store/product-context";
 import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  TableContainer,
-} from "@chakra-ui/react";
-import { CheckCircleIcon, CloseIcon, EditIcon, NotAllowedIcon } from "@chakra-ui/icons";
+  AiOutlineCheck,
+  AiOutlineCloseCircle,
+  AiOutlineClose,
+  AiOutlineEdit,
+} from "react-icons/ai";
+import ProductContext from "../store/product-context";
+import Overlay from "../ui/Overlay";
 
 const ProductsContainer = () => {
   const productsCtx = useContext(ProductContext);
   const products = productsCtx?.products;
   const isLoading = productsCtx?.isLoading;
 
+  const titleClasses = "px-[2rem] py-[1rem]  ";
+  const columnClasses = "px-[1rem] py-[.5rem] ";
+
   return (
-    <TableContainer p={10}>
-      <Table variant="striped" colorScheme="teal">
-        <Thead>
-          <Th>Estado</Th>
-          <Th>Código</Th>
-          <Th>Marca</Th>
-          <Th>Modelo</Th>
-          <Th>Fecha de alta</Th>
-          <Th>Empleado</Th>
-          <Th>Area</Th>
-          <Th>Acciones</Th>
-        </Thead>
-        <Tbody>
-          {products.map((product) => {
+    <Overlay>
+      <table>
+        <tr className="text-white bg-black">
+          <th className={titleClasses}>Estado</th>
+          <th className={titleClasses}>Código</th>
+          <th className={titleClasses}>Marca</th>
+          <th className={titleClasses}>Modelo</th>
+          <th className={titleClasses}>Fecha de alta</th>
+          <th className={titleClasses}>Empleado</th>
+          <th className={titleClasses}>Area</th>
+          <th className={titleClasses}>Acciones</th>
+        </tr>
+        {isLoading &&
+          products.map((product, i) => {
+            const modulo = i % 2;
             return (
-              <Tr>
-                <Td>
+              <tr
+                className={
+                  modulo === 0 ? "text-center bg-gray-100 " : "text-center"
+                }
+              >
+                <td className={columnClasses}>
                   {product.active ? (
-                    <CheckCircleIcon color="green.500" />
+                    <AiOutlineCheck className="text-green-800 font-bold text-[1.5rem] mx-auto" />
                   ) : (
-                    <NotAllowedIcon color="red.500" />
+                    <AiOutlineCloseCircle className="text-red-800 font-bold text-[1.5rem] mx-auto" />
                   )}
-                </Td>
-                <Td>{product._id}</Td>
-                <Td>{product.brand}</Td>
-                <Td>{product.model} </Td>
-                <Td>{product.registrationDate} </Td>
-                <Td> {product.user}</Td>
-                <Td>{product.area} </Td>
-                <Td><a><EditIcon /></a> <a><CloseIcon /></a> </Td>
-              </Tr>
+                </td>
+                <td className={columnClasses}>{product._id}</td>
+                <td className={columnClasses}>{product.brand}</td>
+                <td className={columnClasses}>{product.model} </td>
+                <td className={columnClasses}>{product.registrationDate} </td>
+                <td className={columnClasses}> {product.user}</td>
+                <td className={columnClasses}>{product.area} </td>
+                <td className="flex flex-row justify-center text-[1.2rem] pt-[1rem] items-center">
+                  <a href="google.com">
+                    <AiOutlineEdit className="mr-[1rem]" />
+                  </a>
+                  <a href="google.com">
+                    <AiOutlineClose className="text-red-800 " />
+                  </a>{" "}
+                </td>
+              </tr>
             );
           })}
-        </Tbody>
-      </Table>
-    </TableContainer>
+      </table>
+    </Overlay>
   );
 };
 
