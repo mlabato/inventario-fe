@@ -1,11 +1,11 @@
-import { Box } from "@chakra-ui/react";
 import ProductsContainer from "../components/ProductsContainer";
-
+import Navbar from "../components/Navbar";
 const Home = () => {
   return (
-    <Box>
+    <section>
+      <Navbar />
       <ProductsContainer />
-    </Box>
+    </section>
   );
 };
 
