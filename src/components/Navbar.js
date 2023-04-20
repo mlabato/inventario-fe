@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <Overlay>
       <article className="px-[4rem] flex flex-row justify-between items-center">
-        <div className="text-[3rem] font-bold">inventarioAPP</div>
+        <a href="/" className="text-[3rem] font-bold">inventarioAPP</a>
         <ul className="flex flex-row font-semibold text-[1.25rem]">
           <li className={listClasses}><a href="/agregar">agregar bien</a></li>
           <li className={listClasses}><a href="/usuarios">usuarios</a></li>
