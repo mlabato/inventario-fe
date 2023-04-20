@@ -11,7 +11,7 @@ import Overlay from "../ui/Overlay";
 const ProductsContainer = () => {
   const productsCtx = useContext(ProductContext);
   const products = productsCtx?.products;
-  const isLoading = productsCtx?.isLoading;
+
 
   const titleClasses = "px-[2rem] py-[1rem]  ";
   const columnClasses = "px-[1rem] py-[.5rem] ";
@@ -19,6 +19,8 @@ const ProductsContainer = () => {
   return (
     <Overlay>
       <table>
+        
+        <thead>
         <tr className="text-white bg-black">
           <th className={titleClasses}>Estado</th>
           <th className={titleClasses}>Código</th>
@@ -29,7 +31,9 @@ const ProductsContainer = () => {
           <th className={titleClasses}>Area</th>
           <th className={titleClasses}>Acciones</th>
         </tr>
-        {isLoading &&
+        </thead>
+        <tbody>
+        {
           products.map((product, i) => {
             const modulo = i % 2;
             return (
@@ -37,6 +41,7 @@ const ProductsContainer = () => {
                 className={
                   modulo === 0 ? "text-center bg-gray-100 " : "text-center"
                 }
+                key={i}
               >
                 <td className={columnClasses}>
                   {product.active ? (
@@ -60,8 +65,10 @@ const ProductsContainer = () => {
                   </a>{" "}
                 </td>
               </tr>
+              
             );
           })}
+          </tbody>
       </table>
     </Overlay>
   );
