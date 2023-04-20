@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Add from "./pages/Add";
+import Users from "./pages/Users";
 
 function App() {
   return (
@@ -12,6 +13,10 @@ function App() {
 
       <Routes>
         <Route path="/agregar" element={<Add/>} />
+      </Routes>
+
+      <Routes>
+        <Route path="/usuarios" element={<Users/>} />
       </Routes>
     </section>
   );
